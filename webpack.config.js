@@ -23,6 +23,7 @@ module.exports = {
         watch: true,
       }
     ],
+    compress: true,
     port: 3000,
     hot: true,
   },
@@ -30,14 +31,9 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.(js|jsx)$/,
-        exclude: /node_modules/,
-        use: 'babel-loader'
-      },
-      {
         test: /\.(sa|sc|c)ss$/,
         use: [
-          'style-loader',
+          env == 'development' ? 'style-loader' : MiniCssExtractPlugin.loader,
           'css-loader',
           'sass-loader',
         ]
